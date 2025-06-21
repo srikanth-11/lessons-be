@@ -1,3 +1,5 @@
+
+require('dotenv').config();
 module.exports = {
   development: {
     client: 'pg',
@@ -13,7 +15,7 @@ module.exports = {
   },
   production: {
     client: 'pg',
-    connection:`postgresql://postgres:${process.env.DB_PASS}@db.pgygpftntvotzyssmrsb.supabase.co:5432/postgres`,
+    connection: process.env.DB_URL,
     migrations: {
       directory: './migrations',
     },
