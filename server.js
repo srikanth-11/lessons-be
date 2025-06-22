@@ -6,6 +6,7 @@ const Pack = require('./package');
 const userRoutes = require('./routes/userRoutes');
 const lessonRoutes = require('./routes/lessonRoutes');
 const authRoutes = require('./routes/authRoutes');
+require('./db');
 
 const init = async () => {
   const server = Hapi.server({
