@@ -9,7 +9,21 @@ module.exports = [
     options: {
       description: 'Get all users',
       tags: ['api'],
-      handler: async () => await User.query()
+            handler: async (request, h) => {
+        try {
+          const users = await User.query();
+          return users;
+        } catch (err) {
+          console.error('Error fetching users:', err);
+          return h
+            .response({
+              error: 'Internal server error',
+              details: err.message,
+              stack: err.stack, // Include stack for debugging
+            })
+            .code(500);
+        }
+      },
     },
   },
   {
