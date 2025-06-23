@@ -19,6 +19,13 @@ const init = async () => {
       title: 'My API Docs',
       version: Pack.version,
     },
+    securityDefinitions: {
+    jwt: {
+      type: 'apiKey',
+      name: 'Authorization',
+      in: 'header',
+    },
+  },
   };
 
   await server.register([
