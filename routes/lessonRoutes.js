@@ -2,21 +2,13 @@ const Joi = require('joi');
 const Lesson = require('../models/Lesson');
 const authenticateToken = require('../middleware/authMiddleware');
 
-// Route defaults for authentication and security
-const routeDefaults = {
-  options: {
-    security: [{ jwt: [] }],
-    pre: [{ method: authenticateToken }],
-  },
-};
-
 module.exports = [
   {
     method: 'POST',
     path: '/lessons',
     options: {
-      ...routeDefaults.options,
       description: 'Create a new lesson',
+      pre: [{ method: authenticateToken }],
       tags: ['api'],
       validate: {
         payload: Joi.object({
@@ -37,8 +29,8 @@ module.exports = [
     method: 'GET',
     path: '/lessons',
     options: {
-      ...routeDefaults.options,
       description: 'Get all lessons',
+      pre: [{ method: authenticateToken }],
       tags: ['api'],
       handler: async () => {
         return await Lesson.query();
@@ -49,8 +41,8 @@ module.exports = [
     method: 'GET',
     path: '/lessons/{id}',
     options: {
-      ...routeDefaults.options,
       description: 'Get a lesson by ID',
+      pre: [{ method: authenticateToken }],
       tags: ['api'],
       validate: {
         params: Joi.object({
@@ -70,8 +62,8 @@ module.exports = [
     method: 'PUT',
     path: '/lessons/{id}',
     options: {
-      ...routeDefaults.options,
       description: 'Update a lesson',
+      pre: [{ method: authenticateToken }],
       tags: ['api'],
       validate: {
         params: Joi.object({
@@ -101,8 +93,8 @@ module.exports = [
     method: 'DELETE',
     path: '/lessons/{id}',
     options: {
-      ...routeDefaults.options,
       description: 'Delete a lesson',
+      pre: [{ method: authenticateToken }],
       tags: ['api'],
       validate: {
         params: Joi.object({

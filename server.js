@@ -22,7 +22,7 @@ const init = async () => {
     securityDefinitions: {
     jwt: {
       type: 'apiKey',
-      name: 'Authorization',
+      name: 'authorization',
       in: 'header',
     },
   },
