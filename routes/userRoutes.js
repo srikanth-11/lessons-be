@@ -1,6 +1,5 @@
 const Joi = require("joi");
 const User = require("../models/User");
-const { hashPassword } = require("../utils/auth");
 
 module.exports = [
   {
@@ -9,6 +8,11 @@ module.exports = [
     options: {
       description: "Get all users",
       tags: ["api"],
+      plugins: {
+      'hapi-swagger': {
+        security: [{ jwt: [] }],
+      }
+    },
       handler: async (request, h) => {
         try {
           const users = await User.query();
@@ -32,6 +36,11 @@ module.exports = [
     options: {
       description: "Delete a user by ID",
       tags: ["api"],
+      plugins: {
+      'hapi-swagger': {
+        security: [{ jwt: [] }],
+      }
+    },
       validate: {
         params: Joi.object({
           id: Joi.number().integer().required(),

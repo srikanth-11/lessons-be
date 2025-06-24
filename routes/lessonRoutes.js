@@ -10,6 +10,11 @@ module.exports = [
       description: 'Create a new lesson',
       pre: [{ method: authenticateToken }],
       tags: ['api'],
+      plugins: {
+      'hapi-swagger': {
+        security: [{ jwt: [] }],
+      }
+    },
       validate: {
         payload: Joi.object({
           class_id: Joi.number().integer().required(),
@@ -32,6 +37,11 @@ module.exports = [
       description: 'Get all lessons',
       pre: [{ method: authenticateToken }],
       tags: ['api'],
+      plugins: {
+      'hapi-swagger': {
+        security: [{ jwt: [] }],
+      }
+    },
       handler: async () => {
         return await Lesson.query();
       },
@@ -44,6 +54,11 @@ module.exports = [
       description: 'Get a lesson by ID',
       pre: [{ method: authenticateToken }],
       tags: ['api'],
+      plugins: {
+      'hapi-swagger': {
+        security: [{ jwt: [] }],
+      }
+    },
       validate: {
         params: Joi.object({
           id: Joi.number().integer().required(),
@@ -65,6 +80,11 @@ module.exports = [
       description: 'Update a lesson',
       pre: [{ method: authenticateToken }],
       tags: ['api'],
+      plugins: {
+      'hapi-swagger': {
+        security: [{ jwt: [] }],
+      }
+    },
       validate: {
         params: Joi.object({
           id: Joi.number().integer().required(),
@@ -96,6 +116,11 @@ module.exports = [
       description: 'Delete a lesson',
       pre: [{ method: authenticateToken }],
       tags: ['api'],
+      plugins: {
+      'hapi-swagger': {
+        security: [{ jwt: [] }],
+      }
+    },
       validate: {
         params: Joi.object({
           id: Joi.number().integer().required(),

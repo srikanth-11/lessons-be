@@ -10,13 +10,13 @@ require('./db');
 
 const init = async () => {
   const server = Hapi.server({
-    port: 8000,
-    host: '0.0.0.0',
+    port: process.env.PORT || 8000,
+    host: process.env.HOST || '0.0.0.0',
   });
 
   const swaggerOptions = {
     info: {
-      title: 'My API Docs',
+      title: 'Lessons v1.0 REST API Docs',
       version: Pack.version,
     },
     securityDefinitions: {
